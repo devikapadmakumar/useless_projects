@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Plants Reminder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cooper+Black&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #d4edda; /* Light green background */
+            font-family: 'Cooper Black', sans-serif; /* Cooper Black font */
+        }
+        .olive-green {
+            color: #6B8E23; /* Olive green color */
+        }
+        .bg-plant {
+            background-image: url(https://i.pinimg.com/originals/d8/bf/32/d8bf3287a8ad85cc5270b26be1e11e4b.gif); /* Replace with your image URL */
+            background-size: cover;
+            background-position: center;
+            opacity: 0.5; /* Adjust opacity to see text better */
+        }
+        #content {
+            position: relative;
+            z-index: 10; /* Make sure content is above the background */
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="bg-plant w-full h-full absolute inset-0"></div>
+    <div id="content" class="w-full max-w-md bg-white rounded-2xl shadow-2xl p-6 relative">
+        <h1 class="text-3xl olive-green text-center mb-4">Plant watering reminder</h1>
+        <div id="rainStatus" class="text-center text-xl mb-4 light-black">
+             Checking if it's raining
+        </div>
+
+        <div id="waterNotification" class="hidden bg-yellow-100 border-4 border-yellow-500 p-6 rounded-lg text-center">
+            <div class="text-2xl mb-4">IT'S RAINING! </div>
+            <p class="olive-green font-semibold">
+                Time to water your plants!
+            </p>
+        </div>
+
+        <button id="checkWeatherBtn" class="w-full mt-4 bg-blue-500 text-white py-2 rounded hover:bg-black-600">
+            Check Weather
+        </button>
+    </div>
+
+    <script>
+        const rainStatus = document.getElementById('rainStatus');
+        const waterNotification = document.getElementById('waterNotification');
+        const checkWeatherBtn = document.getElementById('checkWeatherBtn');
+
+        function simulateRain() {
+            const isRaining = Math.random() < 0.5; // 50% chance of rain
+
+            if (isRaining) {
+                rainStatus.textContent = ' IT\'S RAINING!';
+                waterNotification.classList.remove('hidden');
+            } else {
+                rainStatus.textContent = ' No Rain Right Now.';
+                waterNotification.classList.add('hidden');
+            }
+        }
+
+        checkWeatherBtn.addEventListener('click', simulateRain);
+    </script>
+</body>
+</html>
